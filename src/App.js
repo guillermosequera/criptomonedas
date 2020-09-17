@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
+import axios from 'axios';
 import imagen from './cryptomonedas.png';
-import Formulario from './components/Formulario'
+import Formulario from './components/Formulario';
+import Cotizacion from './components/Cotizacion';
 
 const Contenedor = styled.div`
   max-width: 900px;
@@ -40,14 +42,22 @@ function App() {
 
   const [ moneda, guardarMoneda ] = useState('');
   const [ criptomoneda, guardarCriptomoneda ] = useState('');
+  const [ resultado, guardarResultado ] = useState({});
 
   useEffect(() => {
-
+    
+    const cotizarCriptomoneda = async () => {
     //evitamos la ejecucion la primera vez
     if(moneda === '') return;
 
-    console.log('Cotizando...');
+    //consultando la API para obtener cotizacion
+    const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
 
+    const resultado = await axios.get(url);
+
+    guardarResultado(resultado.data.DISPLAY[criptomoneda][moneda]);
+    }
+    cotizarCriptomoneda();
   }, [moneda, criptomoneda]);
 
   return (
@@ -65,6 +75,10 @@ function App() {
           guardarMoneda={guardarMoneda}
           guardarCriptomoneda={guardarCriptomoneda}
         /> 
+
+        <Cotizacion 
+          resultado={resultado}
+        />
       </div>
     </Contenedor>
   );

@@ -35,7 +35,9 @@ const Formulario = ({ guardarMoneda, guardarCriptomoneda }) => {
         { codigo: 'EUR', nombre: 'Euro' },
         { codigo: 'GBP', nombre: 'Libra Esterlina' },
         { codigo: 'MXN', nombre: 'Peso Mexicano' },
-        { codigo: 'COD', nombre: 'Peso Colombiano' }
+        { codigo: 'CHI', nombre: 'Peso Chileno' },
+        { codigo: 'COD', nombre: 'Peso Colombiano' },
+        { codigo: 'VEN', nombre: 'Bolivares' }
     ];
 
     //Utilizando useMoneda
