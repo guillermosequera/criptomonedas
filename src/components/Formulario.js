@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 import Error from './Error'
 import useMoneda from '../hooks/useMoneda';
@@ -93,5 +94,6 @@ const Formulario = ({ guardarMoneda, guardarCriptomoneda }) => {
         </form>
     );
 }
+
 
 export default Formulario;
